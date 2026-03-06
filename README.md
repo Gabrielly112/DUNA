@@ -53,34 +53,3 @@ Para que o projeto funcione perfeitamente com todas as imagens locais, certifiqu
     ├── Duna1.png
     ├── Duna2.png
     └── Duna3.png
-## ⚙️ Como Executar o Projeto
-
-Como o projeto utiliza apenas tecnologias nativas do navegador (Client-side), rodá-lo é extremamente simples:
-
-1. Faça o download ou clone este repositório.
-2. Certifique-se de ter as imagens organizadas na pasta `/imagens` conforme indicado acima.
-3. Dê um duplo clique no arquivo `index.html` para abri-lo no seu navegador padrão (Chrome, Firefox, Edge, Safari, etc.).
-4. **Opcional:** Para uma melhor experiência de desenvolvimento, abra o projeto em um editor de código (como o VS Code) e utilize a extensão **Live Server**.
-
----
-
-## 🎨 Paleta de Cores
-
-A identidade visual foi pensada para refletir a areia, o deserto e a escuridão do espaço sideral:
-
-* **Fundo:** Escuridão Profunda (`#000000` / `#0d0d0d` / `#111111`)
-* **Texto Base:** Areia Clara (`#f4e6c8`)
-* **Destaques e Títulos:** Ouro/Especiaria (`#e6c06c`)
-
----
-
-## 💡 Próximos Passos (To-Do)
-
-Ideias para implementações futuras:
-
-- [ ] Adicionar um botão "Voltar ao topo".
-- [ ] Implementar um carrossel (Swiper) para a seção de filmes.
-- [ ] Criar modais expansíveis para ler mais sobre cada personagem.
-
----
-*Desenvolvido com dedicação por um fã do Universo Duna.*
