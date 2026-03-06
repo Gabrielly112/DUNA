@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Universo Duna</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Cinzel',serif;
+background:black;
+color:#f4e6c8;
+overflow-x:hidden;
+transition:0.5s;
+}
+
+/* FUNDO ESTRELADO ANIMADO */
+
+#stars{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+background:black;
+overflow: hidden;
+}
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius: 50%;
+}
+
+@keyframes twinkle{
+0%{opacity:0.2}
+50%{opacity:1}
+100%{opacity:0.2}
+}
+
+@keyframes moveStar {
+from { transform: translateY(100vh); }
+to { transform: translateY(-10vh); }
+}
+
+/* BANNER */
+
+header{
+height:420px;
+background:linear-gradient(#00000088,#000000ee),
+url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564");
+background-size:cover;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+/* TITULO MELTING E BRILHO */
+
+.melting-text-container{
+position:relative;
+display:inline-block;
+}
+
+.melting-text{
+font-size:90px;
+color:#e6c06c;
+letter-spacing:8px;
+position:relative;
+animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse {
+from { text-shadow: 0 0 5px #e6c06c88, 0 0 10px #e6c06c88; }
+to { text-shadow: 0 0 20px #e6c06c, 0 0 30px #e6c06c, 0 0 45px #e6c06c; }
+}
+
+.melting-text::after{
+content:"DUNA";
+position:absolute;
+left:0;
+top:0;
+color:#e6c06c;
+filter:blur(6px);
+opacity:0.7;
+animation:melting 3s infinite ease-in-out;
+}
+
+@keyframes melting{
+0%{transform:translateY(0);opacity:0.7;}
+50%{transform:translateY(8px);opacity:0.4;}
+100%{transform:translateY(0);opacity:0.7;}
+}
+
+header p{
+font-size:22px;
+}
+
+/* MENU */
+
+nav{
+background:#0d0d0d;
+text-align:center;
+padding:15px;
+position:sticky;
+top:0;
+z-index: 10;
+}
+
+nav a{
+color:#e6c06c;
+margin:0 20px;
+text-decoration:none;
+font-size:18px;
+}
+
+nav a:hover{
+color:white;
+}
+
+/* SEÇÕES */
+
+section{
+max-width:1100px;
+margin:auto;
+padding:70px 20px;
+text-align:center;
+}
+
+h2{
+font-size:38px;
+margin-bottom:40px;
+color:#e6c06c;
+}
+
+/* SOBRE (MÁQUINA DE ESCREVER) */
+
+.sobre-texto {
+font-size: 18px;
+line-height: 1.6;
+max-width: 700px;
+margin: auto;
+text-align: center;
+min-height: 90px; /* Evita que o layout pule enquanto o texto é digitado */
+}
+
+.typewriter-cursor {
+display: inline-block;
+width: 10px;
+height: 18px;
+background-color: #e6c06c;
+vertical-align: middle;
+animation: blink 0.8s infinite;
+margin-left: 4px;
+}
+
+@keyframes blink {
+0%, 100% { opacity: 1; }
+50% { opacity: 0; }
+}
+
+/* PERSONAGENS */
+
+.personagens{
+display:flex;
+flex-wrap:wrap;
+gap:25px;
+justify-content:center;
+}
+
+.card{
+width:240px;
+background:#111;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 0 15px black;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.card img{
+width:100%;
+height:260px;
+object-fit:cover;
+}
+
+.card h3{
+margin:15px 0;
+}
+
+.card p{
+font-size:14px;
+padding:0 15px 20px;
+}
+
+/* FILMES */
+
+.filmes{
+display:flex;
+gap:20px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.filme{
+width:250px;
+position:relative;
+overflow:hidden;
+border-radius:10px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.filme img{
+width:100%;
+height:360px;
+object-fit:cover;
+}
+
+.filmeInfo{
+position:absolute;
+bottom:-100%;
+background:rgba(0,0,0,0.9);
+color:white;
+width:100%;
+padding:15px;
+transition:0.3s;
+}
+
+.filme:hover{
+transform:scale(1.05);
+}
+
+.filme:hover .filmeInfo{
+bottom:0;
+}
+
+/* LINHA DO TEMPO (Reutilizado para Livros e Timeline) */
+
+.timeline{
+border-left:3px solid #e6c06c;
+padding-left:30px;
+max-width:600px;
+margin:auto;
+text-align:left;
+}
+
+.evento{
+margin-bottom:30px;
+position: relative;
+}
+
+/* Bolinha indicadora na linha do tempo */
+.evento::before {
+content: "";
+position: absolute;
+left: -37px;
+top: 5px;
+width: 12px;
+height: 12px;
+background: #e6c06c;
+border-radius: 50%;
+}
+
+.evento h4{
+color:#e6c06c;
+font-size: 20px;
+margin-bottom: 5px;
+}
+
+/* CURIOSIDADES */
+
+.curiosidades{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+max-width:900px;
+margin:auto;
+}
+
+.curiosidadeCard{
+background:#111;
+padding:25px;
+border-radius:12px;
+box-shadow:0 0 15px rgba(0,0,0,0.8);
+transition:0.4s;
+}
+
+.curiosidadeCard:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:0 0 25px #e6c06c55;
+}
+
+.curiosidadeCard h3{
+color:#e6c06c;
+margin-bottom:10px;
+font-size:20px;
+}
+
+.curiosidadeCard p{
+font-size:15px;
+line-height:24px;
+}
+
+.curiosidadeIcon{
+font-size:28px;
+margin-bottom:10px;
+}
+
+/* RODAPÉ */
+
+footer{
+background:#0d0d0d;
+padding:30px;
+text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+
+<header>
+
+<div class="melting-text-container">
+<h1 class="melting-text">DUNA</h1>
+</div>
+
+<p>O épico universo criado por Frank Herbert</p>
+
+</header>
+
+<nav>
+<a href="#sobre">Sobre</a>
+<a href="#personagens">Personagens</a>
+<a href="#livros">Livros</a>
+<a href="#filmes">Filmes</a>
+<a href="#timeline">Saga</a>
+<a href="#curiosidades">Curiosidades</a>
+</nav>
+
+<section id="sobre">
+<h2>Sobre o Universo Duna</h2>
+<div class="sobre-texto">
+    <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
+</div>
+</section>
+
+<section id="personagens">
+
+<h2>Personagens</h2>
+
+<div class="personagens">
+
+<div class="card">
+<img src="imagens/paul.png" alt="Paul Atreides">
+<h3>Paul Atreides</h3>
+<p>Herdeiro da Casa Atreides e figura central do destino de Arrakis.</p>
+</div>
+
+<div class="card">
+<img src="imagens/jessica.png" alt="Lady Jessica">
+<h3>Lady Jessica</h3>
+<p>Membro da ordem Bene Gesserit e mãe de Paul.</p>
+</div>
+
+<div class="card">
+<img src="imagens/leto.png" alt="Duque Leto">
+<h3>Duque Leto</h3>
+<p>Líder da Casa Atreides e pai de Paul.</p>
+</div>
+
+<div class="card">
+<img src="imagens/baron.png" alt="Barão Harkonnen">
+<h3>Barão Harkonnen</h3>
+<p>Vilão cruel e líder da Casa Harkonnen.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="livros">
+
+<h2>Ordem dos Livros de Duna</h2>
+
+<div class="timeline">
+
+<div class="evento">
+<h4>1965</h4>
+<p>Duna</p>
+</div>
+
+<div class="evento">
+<h4>1969</h4>
+<p>Messias de Duna</p>
+</div>
+
+<div class="evento">
+<h4>1976</h4>
+<p>Filhos de Duna</p>
+</div>
+
+<div class="evento">
+<h4>1981</h4>
+<p>Imperador-Deus de Duna</p>
+</div>
+
+<div class="evento">
+<h4>1984</h4>
+<p>Hereges de Duna</p>
+</div>
+
+<div class="evento">
+<h4>1985</h4>
+<p>As Herdeiras de Duna</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="filmes">
+
+<h2>Filmes de Duna</h2>
+
+<div class="filmes">
+
+<div class="filme">
+<img src="imagens/Duna1.png" alt="Duna 1">
+<div class="filmeInfo">
+<h3>Duna (2021)</h3>
+<p>Dirigido por Denis Villeneuve.</p>
+</div>
+</div>
+
+<div class="filme">
+<img src="imagens/Duna2.png" alt="Duna 2">
+<div class="filmeInfo">
+<h3>Duna Parte 2 (2024)</h3>
+<p>Continuação da obra.</p>
+</div>
+</div>
+
+<div class="filme">
+<img src="imagens/Duna3.png" alt="Duna 3">
+<div class="filmeInfo">
+<h3>Duna Parte 3 (2026)</h3>
+<p>Terceira e última parte da obra.</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="curiosidades">
+
+<h2>Curiosidades</h2>
+
+<div class="curiosidades">
+
+<div class="curiosidadeCard">
+<div class="curiosidadeIcon">📖</div>
+<h3>6 anos de escrita</h3>
+<p>Frank Herbert passou cerca de seis anos pesquisando e escrevendo Duna.</p>
+</div>
+
+<div class="curiosidadeCard">
+<div class="curiosidadeIcon">🚫</div>
+<h3>Rejeições</h3>
+<p>O livro foi rejeitado por diversas editoras antes de ser publicado.</p>
+</div>
+
+<div class="curiosidadeCard">
+<div class="curiosidadeIcon">🏆</div>
+<h3>Sucesso mundial</h3>
+<p>Duna se tornou o livro de ficção científica mais vendido da história.</p>
+</div>
+
+<div class="curiosidadeCard">
+<div class="curiosidadeIcon">🌍</div>
+<h3>Temas profundos</h3>
+<p>A obra mistura política, religião, filosofia e ecologia.</p>
+</div>
+
+<div class="curiosidadeCard">
+<div class="curiosidadeIcon">✨</div>
+<h3>Melange</h3>
+<p>A especiaria melange permite viagens espaciais no universo da história.</p>
+</div>
+
+<div class="curiosidadeCard">
+<div class="curiosidadeIcon">🏜️</div>
+<h3>Inspiração</h3>
+<p>Frank Herbert se inspirou em desertos reais para criar Arrakis.</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+2026 • Universo Duna
+</footer>
+
+<script>
+// --- ANIMAÇÃO DAS ESTRELAS ---
+const starsContainer = document.getElementById("stars");
+
+for(let i=0; i<150; i++){
+    let star = document.createElement("div");
+    star.className = "star";
+    
+    star.style.left = Math.random() * 100 + "vw";
+    
+    let duration = Math.random() * 15 + 10; 
+    let delay = Math.random() * -25;
+    
+    star.style.animation = `moveStar ${duration}s linear ${delay}s infinite, twinkle ${Math.random() * 3 + 2}s infinite ease-in-out`;
+    
+    starsContainer.appendChild(star);
+}
+
+// --- EFEITO MÁQUINA DE ESCREVER ---
+const textToType = "Duna é uma das maiores obras da ficção científica. A história se passa no planeta Arrakis, onde existe a especiaria melange, o recurso mais valioso do universo.";
+const textElement = document.getElementById("typewriter-text");
+let charIndex = 0;
+
+function typeWriter() {
+    if (charIndex < textToType.length) {
+        textElement.innerHTML += textToType.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeWriter, 35); // Velocidade de digitação (35ms por letra)
+    }
+}
+
+// O IntersectionObserver faz a animação começar apenas quando a seção aparecer na tela
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            typeWriter();
+            observer.unobserve(entry.target); // Impede que a animação repita se rolar para cima e para baixo
+        }
+    });
+}, { threshold: 0.5 }); // 0.5 significa que começa quando metade da seção "Sobre" estiver visível
+
+observer.observe(document.getElementById("sobre"));
+
+</script>
+
+</body>
+</html>
